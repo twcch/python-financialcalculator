@@ -32,19 +32,19 @@ class ReturnOfPremiumCalculator:
         unit_premium = round(decimal.Decimal(self.__annualized_standard_unit_premium * self.__spillover_multiple * min(self.__payment_period, self.__insurance_year_at_date_of_loss)), 1)
 
         if (var == 'B'):
-            sum_amount = self.__unit_base_sum_amount
+            unit_sum_amount = self.__unit_base_sum_amount
         
         if (var == 'P'):
-            sum_amount = self.__unit_paid_up_sum_amount
+            unit_sum_amount = self.__unit_paid_up_sum_amount
         
         if (var == 'T'):
-            sum_amount = self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
+            unit_sum_amount = self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
         
         if (self.__currency == 'NTD'):
-            result = round(decimal.Decimal(unit_premium * sum_amount))
+            result = round(decimal.Decimal(unit_premium * unit_sum_amount))
         
         if (self.__currency == 'USD'):
-            result = math.ceil(decimal.Decimal(unit_premium * sum_amount))
+            result = math.ceil(decimal.Decimal(unit_premium * unit_sum_amount))
         
         result = round(decimal.Decimal(result * self.__result_ratio))
 
