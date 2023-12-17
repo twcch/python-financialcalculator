@@ -34,7 +34,7 @@ class ReturnOfPremiumCalculator:
         if (var == 'T'):
             unit_sum_amount = self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
         
-        result = round(decimal.Decimal(unit_sum_amount * vpu * self.__multiple * self.__result_ratio))
+        result = round(decimal.Decimal(unit_sum_amount * self.__vpu * self.__multiple * self.__result_ratio))
 
         return result
 
