@@ -1,7 +1,7 @@
 import decimal
 import math
 
-class ReturnOfPremiumCalculator:
+class ReturnOfPremiumCalculatorService:
 
     def __init__(self):
         self.__currency = 'NTD'

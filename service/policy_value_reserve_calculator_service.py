@@ -1,6 +1,6 @@
 import decimal
 
-class PolicyValueReserveCalculator:
+class PolicyValueReserveCalculatorService:
 
     def __init__(self):
         self.__beginning_policy_value_reserve = 0

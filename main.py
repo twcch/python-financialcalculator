@@ -1,11 +1,14 @@
-from service.return_of_premium_calculator import ReturnOfPremiumCalculator
+from service.return_of_premium_calculator_service import ReturnOfPremiumCalculatorService
+from service.date_calculator_service import DateCalculatorService
+from datetime import datetime
 
 def main():
-    return_of_premium_calculator = ReturnOfPremiumCalculator()
 
-    return_of_premium_calculator.set_annualized_standard_unit_premium(20)
+    p1 = '2022-1-1'
+    p2 = '2023-5-1'
 
-    print(return_of_premium_calculator.calculate_return_of_premium_on_base_sum_amount())
+    date_calculator_service = DateCalculatorService(p1, p2)
+    print(date_calculator_service.calculate_years_difference(0))
 
 
 if __name__ == '__main__':

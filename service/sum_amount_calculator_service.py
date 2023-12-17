@@ -1,6 +1,6 @@
 import decimal
 
-class ReturnOfPremiumCalculator:
+class ReturnOfPremiumCalculatorService:
 
     def __init__(self):
         self.__vpu = 10000
