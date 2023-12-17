@@ -1,14 +1,61 @@
+import decimal
+import math
+
 class ReturnOfPremiumCalculator:
 
     def __init__(self):
+        self.__currency = 'NTD'
         self.__annualized_standard_unit_premium = 0
         self.__unit_base_sum_amount = 0
         self.__unit_paid_up_sum_amount = 0
         self.__payment_period = 0
         self.__insurance_year_at_date_of_loss = 0
         self.__spillover_multiple = 1
-        self.__benefit_ratio = 1
-    
+        self.__result_ratio = 1
+
+    def calculate_return_of_premium_on_base_sum_amount(self):
+        result = self.__calculate_return_of_premium('B')
+
+        return result
+
+    def calculate_return_of_premium_on_paid_up_sum_amount(self):
+        result = self.__calculate_return_of_premium('P')
+
+        return result
+
+    def calculate_return_of_premium_on_total_sum_amount(self):
+        result = self.__calculate_return_of_premium('T')
+
+        return result
+
+    def __calculate_return_of_premium(self, var):
+        unit_premium = round(decimal.Decimal(self.__annualized_standard_unit_premium * self.__spillover_multiple * min(self.__payment_period, self.__insurance_year_at_date_of_loss)), 1)
+
+        if (var == 'B'):
+            sum_amount = self.__unit_base_sum_amount
+        
+        if (var == 'P'):
+            sum_amount = self.__unit_paid_up_sum_amount
+        
+        if (var == 'T'):
+            sum_amount = self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
+        
+        if (self.__currency == 'NTD'):
+            result = round(decimal.Decimal(unit_premium * sum_amount))
+        
+        if (self.__currency == 'USD'):
+            result = math.ceil(decimal.Decimal(unit_premium * sum_amount))
+        
+        result = round(decimal.Decimal(result * self.__result_ratio))
+
+        return result
+
+    def get_currency(self):
+        return self.__currency
+
+    def set_currency(self, currency):
+        self.__currency = currency
+
     def get_annualized_standard_unit_premium(self):
         return self.__annualized_standard_unit_premium
 
@@ -45,8 +92,8 @@ class ReturnOfPremiumCalculator:
     def set_spillover_multiple(self, spillover_multiple):
         self.__spillover_multiple = spillover_multiple
 
-    def get_benefit_ratio(self):
-        return self.__benefit_ratio
+    def get_result_ratio(self):
+        return self.__result_ratio
     
-    def set_benefit_ratio(self, benefit_ratio):
-        self.__benefit_ratio = benefit_ratio
+    def set_result_ratio(self, result_ratio):
+        self.__result_ratio = result_ratio
