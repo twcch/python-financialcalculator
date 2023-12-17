@@ -1,3 +1,5 @@
+import decimal
+
 class ReturnOfPremiumCalculator:
 
     def __init__(self):
@@ -7,17 +9,17 @@ class ReturnOfPremiumCalculator:
         self.__multiple = 1
         self.__result_ratio = 1
 
-    def calculate_return_of_premium_on_base_sum_amount(self):
+    def calculate_sum_amount_on_base_sum_amount(self):
         result = self.__calculate_sum_amount('B')
 
         return result
 
-    def calculate_return_of_premium_on_paid_up_sum_amount(self):
+    def calculate_sum_amount_on_paid_up_sum_amount(self):
         result = self.__calculate_sum_amount('P')
 
         return result
 
-    def calculate_return_of_premium_on_total_sum_amount(self):
+    def calculate_sum_amount_on_total_sum_amount(self):
         result = self.__calculate_sum_amount('T')
 
         return result
