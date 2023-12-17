@@ -27,7 +27,6 @@ class DateCalculatorService:
 
         return days
 
-
     def get_start_date(self):
         return self.__start_date
 
