@@ -1,15 +1,15 @@
-from service.return_of_premium_calculator_service import ReturnOfPremiumCalculatorService
-from service.date_difference_calculator_service import DateDifferenceCalculatorService
-from datetime import datetime
+from dto.benefit_params import BenefitParams
+from service.discount_calculator_service import DiscountCalculatorService
 
 def main():
-
-    p1 = '2022-1-1'
-    p2 = '2023-5-1'
-
-    date_calculator_service = DateDifferenceCalculatorService(p1, p2)
-    print(date_calculator_service.calculate_years_difference(0))
-
+    benefit_params = BenefitParams()
+    benefit_params.set_payment_amount(10000)
+    benefit_params.set_annual_discount_rate(0.01)
+    benefit_params.set_discount_times(1)
+    
+    discount_calculator_service = DiscountCalculatorService(benefit_params)
+    result = discount_calculator_service.calculate_monthly_discount_rate()
+    print(result)
 
 if __name__ == '__main__':
     main()
