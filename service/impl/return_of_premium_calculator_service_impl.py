@@ -47,10 +47,10 @@ class ReturnOfPremiumCalculatorServiceImpl(ReturnOfPremiumCalculatorService):
                 + self.__claim_benefit_params.get_unit_paid_up_sum_amount()
             )
 
-        if self.__claim_benefit_params.get_currency == "NTD":
+        if self.__claim_benefit_params.get_currency() == "NTD":
             result = round(decimal.Decimal(unit_premium * unit_sum_amount))
 
-        if self.__claim_benefit_params.get_currency == "USD":
+        if self.__claim_benefit_params.get_currency() == "USD":
             result = math.ceil(decimal.Decimal(unit_premium * unit_sum_amount))
 
         result = round(
