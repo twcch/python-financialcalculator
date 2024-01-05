@@ -1,5 +1,4 @@
-class ClaimBenefitParams():
-
+class ClaimBenefitParams:
     def __init__(self):
         # 保額相關
         self.__vpu = 10000

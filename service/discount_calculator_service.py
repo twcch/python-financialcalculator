@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
-class DiscountCalculatorService(ABC):
 
+class DiscountCalculatorService(ABC):
     @abstractmethod
     def calculate_monthly_interest_rate_for_discount(self):
         pass
