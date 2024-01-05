@@ -3,10 +3,10 @@ from service.calculator.impl.discount_calculator_service_impl import DiscountCal
 
 
 def main():
-    discount_calculator()
+    compute_discount()
 
 
-def discount_calculator():
+def compute_discount():
     claim_benefit_params = ClaimBenefitParams()
     claim_benefit_params.set_payment_amount(40000)
     claim_benefit_params.set_annual_interest_rate_for_discount(0.021)
