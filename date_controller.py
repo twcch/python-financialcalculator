@@ -12,9 +12,9 @@ def compute_date_difference():
     end_date = datetime(2023, 1, 2)
 
     date_params = DateParams()
-    date_params.set_start_date(start_date)
-    date_params.set_end_date(end_date)
-    date_params.set_adjust_months(1)
+    date_params.set_start_date_for_difference(start_date)
+    date_params.set_end_date_for_difference(end_date)
+    date_params.set_adjust_months_for_difference(1)
 
     date_calculator_service_impl = DateCalculatorServiceImpl(date_params)
     result = date_calculator_service_impl.calculate_years_difference()

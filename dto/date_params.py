@@ -4,38 +4,69 @@ from datetime import datetime
 class DateParams():
 
     def __init__(self):
-        self.__start_date = datetime(1911, 1, 1)
-        self.__end_date = datetime(1911, 1, 1)
-        self.__adjust_years = 0
-        self.__adjust_months = 0
-        self.__adjust_days = 0
+        # 日期差相關
+        self.__start_date_for_difference = datetime(1911, 1, 1)
+        self.__end_date_for_difference = datetime(1911, 1, 1)
+        self.__adjust_years_for_difference = 0
+        self.__adjust_months_for_difference = 0
+        self.__adjust_days_for_difference = 0
 
-    def get_start_date(self):
-        return self.__start_date
+        # 日期運算相關
+        self.__date_for_computing = datetime(1911, 1, 1)
+        self.__adjust_years_for_computing = 0
+        self.__adjust_months_for_computing = 0
+        self.__adjust_days_for_computing = 0
 
-    def set_start_date(self, start_date):
-        self.__start_date = start_date
+    def get_start_date_for_difference(self):
+        return self.__start_date_for_difference
 
-    def get_end_date(self):
-        return self.__end_date
+    def set_start_date_for_difference(self, start_date_for_difference):
+        self.__start_date_for_difference = start_date_for_difference
 
-    def set_end_date(self, end_date):
-        self.__end_date = end_date
+    def get_end_date_for_difference(self):
+        return self.__end_date_for_difference
 
-    def get_adjust_years(self):
-        return self.__adjust_years
+    def set_end_date_for_difference(self, end_date_for_difference):
+        self.__end_date_for_difference = end_date_for_difference
 
-    def set_adjust_years(self, adjust_years):
-        self.__adjust_years = adjust_years
+    def get_adjust_years_for_difference(self):
+        return self.__adjust_years_for_difference
 
-    def get_adjust_months(self):
-        return self.__adjust_months
+    def set_adjust_years_for_difference(self, adjust_years_for_difference):
+        self.__adjust_years_for_difference = adjust_years_for_difference
 
-    def set_adjust_months(self, adjust_months):
-        self.__adjust_months = adjust_months
+    def get_adjust_months_for_difference(self):
+        return self.__adjust_months_for_difference
 
-    def get_adjust_days(self):
-        return self.__adjust_days
+    def set_adjust_months_for_difference(self, adjust_months_for_difference):
+        self.__adjust_months_for_difference = adjust_months_for_difference
 
-    def set_adjust_days(self, adjust_days):
-        self.__adjust_days = adjust_days
+    def get_adjust_days_for_difference(self):
+        return self.__adjust_days_for_difference
+
+    def set_adjust_days_for_difference(self, adjust_days_for_difference):
+        self.__adjust_days_for_difference = adjust_days_for_difference
+
+    def get_date_for_computing(self):
+        return self.__date_for_computing
+
+    def set_date_for_computing(self, date_for_computing):
+        self.__date_for_computing = date_for_computing
+
+    def get_adjust_years_for_computing(self):
+        return self.__adjust_years_for_computing
+
+    def set_adjust_years_for_computing(self, adjust_years_for_computing):
+        self.__adjust_years_for_computing = adjust_years_for_computing
+
+    def get_adjust_months_for_computing(self):
+        return self.__adjust_months_for_computing
+
+    def set_adjust_months_for_computing(self, adjust_months_for_computing):
+        self.__adjust_months_for_computing = adjust_months_for_computing
+
+    def get_adjust_days_for_computing(self):
+        return self.__adjust_days_for_computing
+
+    def set_adjust_days_for_computing(self, adjust_days_for_computing):
+        self.__adjust_days_for_computing = adjust_days_for_computing

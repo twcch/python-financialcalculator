@@ -1,14 +1,17 @@
-from datetime import datetime
-from dateutil.relativedelta import relativedelta
+from datetime import datetime, timedelta
 
-# 定義兩個日期
-date1 = datetime(2022, 1, 15)
-date2 = datetime(2022, 5, 20)
+def add_days_to_date(input_date, days_to_add):
+    # 將輸入日期轉換為 datetime 對象
+    input_datetime = datetime.strptime(input_date, "%Y-%m-%d")
 
-# 計算月份差
-delta = relativedelta(date2, date1)
+    # 使用 timedelta 增加天數
+    result_datetime = input_datetime + timedelta(days=days_to_add)
 
-# 提取月份差
-months_diff = delta.years * 12 + delta.months
+    return result_datetime
 
-print("Months Difference:", months_diff)
+# 測試方法
+input_date = "2022-01-15"
+days_to_add = 30
+
+result = add_days_to_date(input_date, days_to_add)
+print("Result:", type(result))

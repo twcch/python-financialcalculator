@@ -3,25 +3,25 @@ from datetime import datetime
 
 class ClaimBenefitParams:
     def __init__(self):
-        # 險種相關
+        # 險種相關變數
         self.__coverage_start_date = datetime(1911, 1, 1)
         self.__currency = "NTD"
         self.__payment_frequency = "A"
         self.__payment_period = 0
         self.__vpu = 10000
 
-        # 理賠相關
+        # 理賠相關變數
         self.__date_of_loss = datetime(1911, 1, 1)
         self.__insurance_year_at_date_of_loss = (
             self.__calculate_insurance_year_at_date_of_loss()
         )
 
-        # 保險費相關
+        # 保險費相關變數
         self.__annualized_standard_unit_premium = 0
         self.__multiple_for_return_of_premium = 1
         self.__result_ratio_for_return_of_premium = 1
 
-        # 保單價值準備金相關
+        # 保單價值準備金相關變數
         self.__beginning_policy_value_reserve = 0
         self.__ending_policy_value_reserve = 0
         self.__cumulative_days_for_policy_value_reserve = (
@@ -33,13 +33,13 @@ class ClaimBenefitParams:
         self.__multiple_for_policy_value_reserve = 1
         self.__result_ratio_for_policy_value_reserve = 1
 
-        # 保險金額相關
+        # 保險金額相關變數
         self.__unit_base_sum_amount = 0
         self.__unit_paid_up_sum_amount = 0
         self.__multiple_for_sum_amount = 1
         self.__result_ratio_for_sum_amount = 1
 
-        # 貼現相關
+        # 貼現相關變數
         self.__payment_amount = 0
         self.__annual_interest_rate_for_discount = 0
         self.__discount_times = 0
