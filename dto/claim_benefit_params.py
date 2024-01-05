@@ -1,6 +1,8 @@
 from datetime import datetime
 from dto.date_params import DateParams
-from service.calculator.impl.date_calculator_service_impl import DateCalculatorServiceImpl
+from service.calculator.impl.date_calculator_service_impl import (
+    DateCalculatorServiceImpl,
+)
 
 
 class ClaimBenefitParams:
@@ -67,7 +69,9 @@ class ClaimBenefitParams:
 
     def __calculate_cumulative_days_for_policy_value_reserve(self):
         date_params = DateParams()
-        date_params.set_start_date_for_difference(self.__calculate_period_start_date_at_date_of_loss())
+        date_params.set_start_date_for_difference(
+            self.__calculate_period_start_date_at_date_of_loss()
+        )
         date_params.set_end_date_for_difference(self.__date_of_loss)
         date_params.set_adjust_days_for_difference(0)
 
@@ -78,7 +82,9 @@ class ClaimBenefitParams:
 
     def calculate_period_days_for_policy_value_reserve(self):
         date_params = DateParams()
-        date_params.set_start_date_for_difference(self.__calculate_period_start_date_at_date_of_loss())
+        date_params.set_start_date_for_difference(
+            self.__calculate_period_start_date_at_date_of_loss()
+        )
 
         date_params.set_date_for_computing(date_params.get_start_date_for_difference())
         date_params.set_adjust_years_for_computing(1)
@@ -132,7 +138,9 @@ class ClaimBenefitParams:
         self.__date_of_loss = date_of_loss
 
     def get_insurance_year_at_date_of_loss(self):
-        self.__insurance_year_at_date_of_loss = self.__calculate_insurance_year_at_date_of_loss()
+        self.__insurance_year_at_date_of_loss = (
+            self.__calculate_insurance_year_at_date_of_loss()
+        )
 
         return self.__insurance_year_at_date_of_loss
 
@@ -152,7 +160,7 @@ class ClaimBenefitParams:
         return self.__result_ratio_for_return_of_premium
 
     def set_result_ratio_for_return_of_premium(
-            self, result_ratio_for_return_of_premium
+        self, result_ratio_for_return_of_premium
     ):
         self.__result_ratio_for_return_of_premium = result_ratio_for_return_of_premium
 
@@ -169,12 +177,16 @@ class ClaimBenefitParams:
         self.__ending_policy_value_reserve = ending_policy_value_reserve
 
     def get_cumulative_days_for_policy_value_reserve(self):
-        self.__cumulative_days_for_policy_value_reserve = self.__calculate_cumulative_days_for_policy_value_reserve()
+        self.__cumulative_days_for_policy_value_reserve = (
+            self.__calculate_cumulative_days_for_policy_value_reserve()
+        )
 
         return self.__cumulative_days_for_policy_value_reserve
 
     def get_period_days_for_policy_value_reserve(self):
-        self.__period_days_for_policy_value_reserve = self.__calculate_period_days_for_policy_value_reserve()
+        self.__period_days_for_policy_value_reserve = (
+            self.__calculate_period_days_for_policy_value_reserve()
+        )
 
         return self.__period_days_for_policy_value_reserve
 
@@ -188,7 +200,7 @@ class ClaimBenefitParams:
         return self.__result_ratio_for_policy_value_reserve
 
     def set_result_ratio_for_policy_value_reserve(
-            self, result_ratio_for_policy_value_reserve
+        self, result_ratio_for_policy_value_reserve
     ):
         self.__result_ratio_for_policy_value_reserve = (
             result_ratio_for_policy_value_reserve

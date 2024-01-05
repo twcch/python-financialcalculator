@@ -1,6 +1,8 @@
 from datetime import datetime
 from dto.date_params import DateParams
-from service.calculator.impl.date_calculator_service_impl import DateCalculatorServiceImpl
+from service.calculator.impl.date_calculator_service_impl import (
+    DateCalculatorServiceImpl,
+)
 
 
 def main():

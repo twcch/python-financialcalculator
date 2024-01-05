@@ -1,8 +1,7 @@
 from datetime import datetime
 
 
-class DateParams():
-
+class DateParams:
     def __init__(self):
         # 日期差相關
         self.__start_date_for_difference = datetime(1911, 1, 1)
