@@ -3,9 +3,8 @@ import math
 
 
 class ReturnOfPremiumCalculatorService:
-
     def __init__(self):
-        self.__currency = 'NTD'
+        self.__currency = "NTD"
         self.__annualized_standard_unit_premium = 0
         self.__unit_base_sum_amount = 0
         self.__unit_paid_up_sum_amount = 0
@@ -15,39 +14,45 @@ class ReturnOfPremiumCalculatorService:
         self.__result_ratio = 1
 
     def calculate_return_of_premium_on_base_sum_amount(self):
-        result = self.__calculate_return_of_premium('B')
+        result = self.__calculate_return_of_premium("B")
 
         return result
 
     def calculate_return_of_premium_on_paid_up_sum_amount(self):
-        result = self.__calculate_return_of_premium('P')
+        result = self.__calculate_return_of_premium("P")
 
         return result
 
     def calculate_return_of_premium_on_total_sum_amount(self):
-        result = self.__calculate_return_of_premium('T')
+        result = self.__calculate_return_of_premium("T")
 
         return result
 
     def __calculate_return_of_premium(self, var):
-        unit_premium = round(decimal.Decimal(
-            self.__annualized_standard_unit_premium * self.__spillover_multiple * min(self.__payment_period,
-                                                                                      self.__insurance_year_at_date_of_loss)),
-            1)
+        unit_premium = round(
+            decimal.Decimal(
+                self.__annualized_standard_unit_premium
+                * self.__spillover_multiple
+                * min(self.__payment_period, self.__insurance_year_at_date_of_loss)
+            ),
+            1,
+        )
 
-        if (var == 'B'):
+        if var == "B":
             unit_sum_amount = self.__unit_base_sum_amount
 
-        if (var == 'P'):
+        if var == "P":
             unit_sum_amount = self.__unit_paid_up_sum_amount
 
-        if (var == 'T'):
-            unit_sum_amount = self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
+        if var == "T":
+            unit_sum_amount = (
+                self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
+            )
 
-        if (self.__currency == 'NTD'):
+        if self.__currency == "NTD":
             result = round(decimal.Decimal(unit_premium * unit_sum_amount))
 
-        if (self.__currency == 'USD'):
+        if self.__currency == "USD":
             result = math.ceil(decimal.Decimal(unit_premium * unit_sum_amount))
 
         result = round(decimal.Decimal(result * self.__result_ratio))

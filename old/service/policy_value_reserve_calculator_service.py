@@ -2,7 +2,6 @@ import decimal
 
 
 class PolicyValueReserveCalculatorService:
-
     def __init__(self):
         self.__beginning_policy_value_reserve = 0
         self.__ending_policy_value_reserve = 0
@@ -14,32 +13,46 @@ class PolicyValueReserveCalculatorService:
         self.__result_ratio = 1
 
     def calculate_policy_value_reserve_on_base_sum_amount(self):
-        result = self.__calculate_policy_value_reserve('B')
+        result = self.__calculate_policy_value_reserve("B")
 
         return result
 
     def calculate_policy_value_reserve_on_paid_up_sum_amount(self):
-        result = self.__calculate_policy_value_reserve('P')
+        result = self.__calculate_policy_value_reserve("P")
 
         return result
 
     def calculate_policy_value_reserve_on_total_sum_amount(self):
-        result = self.__calculate_policy_value_reserve('T')
+        result = self.__calculate_policy_value_reserve("T")
 
         return result
 
     def __calculate_policy_value_reserve(self, var):
-        if (var == 'B'):
+        if var == "B":
             unit_sum_amount = self.__unit_base_sum_amount
 
-        if (var == 'P'):
+        if var == "P":
             unit_sum_amount = self.__unit_paid_up_sum_amount
 
-        if (var == 'T'):
-            unit_sum_amount = self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
+        if var == "T":
+            unit_sum_amount = (
+                self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
+            )
 
-        result = round(decimal.Decimal(((
-                                                self.__ending_policy_value_reserve - self.__beginning_policy_value_reserve) * self.__cumulative_days / self.__period_days + self.__beginning_policy_value_reserve) * unit_sum_amount))
+        result = round(
+            decimal.Decimal(
+                (
+                    (
+                        self.__ending_policy_value_reserve
+                        - self.__beginning_policy_value_reserve
+                    )
+                    * self.__cumulative_days
+                    / self.__period_days
+                    + self.__beginning_policy_value_reserve
+                )
+                * unit_sum_amount
+            )
+        )
 
         return result
 

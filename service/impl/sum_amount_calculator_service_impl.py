@@ -32,4 +32,22 @@ class SumAmountCalculatorServiceImpl(SumAmountCalculatorService):
                 + self.__claim_benefit_params.get_unit_paid_up_sum_amount()
             )
 
-        return unit_sum_amount
+        vpu = self.__claim_benefit_params.get_vpu()
+        multiple_for_sum_amount = (
+            self.__claim_benefit_params.get_multiple_for_sum_amount()
+        )
+        result_ratio_for_sum_amount = (
+            self.__claim_benefit_params.get_result_ratio_for_sum_amount()
+        )
+
+        result = round(
+            decimal.Decimal(
+                unit_sum_amount
+                * vpu
+                * multiple_for_sum_amount
+                * result_ratio_for_sum_amount
+            ),
+            0,
+        )
+
+        return result

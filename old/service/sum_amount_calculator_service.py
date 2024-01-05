@@ -2,7 +2,6 @@ import decimal
 
 
 class ReturnOfPremiumCalculatorService:
-
     def __init__(self):
         self.__vpu = 10000
         self.__unit_base_sum_amount = 0
@@ -11,31 +10,37 @@ class ReturnOfPremiumCalculatorService:
         self.__result_ratio = 1
 
     def calculate_sum_amount_on_base_sum_amount(self):
-        result = self.__calculate_sum_amount('B')
+        result = self.__calculate_sum_amount("B")
 
         return result
 
     def calculate_sum_amount_on_paid_up_sum_amount(self):
-        result = self.__calculate_sum_amount('P')
+        result = self.__calculate_sum_amount("P")
 
         return result
 
     def calculate_sum_amount_on_total_sum_amount(self):
-        result = self.__calculate_sum_amount('T')
+        result = self.__calculate_sum_amount("T")
 
         return result
 
     def __calculate_sum_amount(self, var):
-        if (var == 'B'):
+        if var == "B":
             unit_sum_amount = self.__unit_base_sum_amount
 
-        if (var == 'P'):
+        if var == "P":
             unit_sum_amount = self.__unit_paid_up_sum_amount
 
-        if (var == 'T'):
-            unit_sum_amount = self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
+        if var == "T":
+            unit_sum_amount = (
+                self.__unit_base_sum_amount + self.__unit_paid_up_sum_amount
+            )
 
-        result = round(decimal.Decimal(unit_sum_amount * self.__vpu * self.__multiple * self.__result_ratio))
+        result = round(
+            decimal.Decimal(
+                unit_sum_amount * self.__vpu * self.__multiple * self.__result_ratio
+            )
+        )
 
         return result
 
