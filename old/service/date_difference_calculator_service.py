@@ -15,9 +15,9 @@ class DateDifferenceCalculatorService:
 
     def calculate_months_difference(self, adj_months):
         months = (
-            (self.__end_date - self.__start_date) * 12
-            + self.__end_date.month
-            - self.__start_date.month
+                (self.__end_date - self.__start_date) * 12
+                + self.__end_date.month
+                - self.__start_date.month
         )
 
         months = months + adj_months
