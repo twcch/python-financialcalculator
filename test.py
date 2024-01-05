@@ -1,17 +1,23 @@
-from datetime import datetime, timedelta
+from datetime import datetime
+from dto.claim_benefit_params import ClaimBenefitParams
 
-def add_days_to_date(input_date, days_to_add):
-    # 將輸入日期轉換為 datetime 對象
-    input_datetime = datetime.strptime(input_date, "%Y-%m-%d")
 
-    # 使用 timedelta 增加天數
-    result_datetime = input_datetime + timedelta(days=days_to_add)
+def main():
+    test1()
 
-    return result_datetime
 
-# 測試方法
-input_date = "2022-01-15"
-days_to_add = 30
+def test1():
+    coverage_start_date = datetime(2020, 1, 1)
+    date_of_loss = datetime(2023, 5, 1)
 
-result = add_days_to_date(input_date, days_to_add)
-print("Result:", type(result))
+    claim_benefit_params = ClaimBenefitParams()
+    claim_benefit_params.set_coverage_start_date(coverage_start_date)
+    claim_benefit_params.set_date_of_loss(date_of_loss)
+
+    result = claim_benefit_params.calculate_period_days_for_policy_value_reserve()
+
+    print(result)
+
+
+if __name__ == "__main__":
+    main()

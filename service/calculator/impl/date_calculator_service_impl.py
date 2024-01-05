@@ -1,3 +1,4 @@
+from datetime import datetime
 from service.calculator.date_calculator_service import DateCalculatorService
 from dateutil.relativedelta import relativedelta
 
@@ -23,6 +24,7 @@ class DateCalculatorServiceImpl(DateCalculatorService):
         return result
 
     def calculate_days_difference(self):
+
         days_difference = self.__date_params.get_end_date_for_difference() - self.__date_params.get_start_date_for_difference()
         result = days_difference.days + self.__date_params.get_adjust_days_for_difference()
 

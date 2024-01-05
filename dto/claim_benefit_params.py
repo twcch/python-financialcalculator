@@ -1,4 +1,6 @@
 from datetime import datetime
+from dto.date_params import DateParams
+from service.calculator.impl.date_calculator_service_impl import DateCalculatorServiceImpl
 
 
 class ClaimBenefitParams:
@@ -12,9 +14,7 @@ class ClaimBenefitParams:
 
         # 理賠相關變數
         self.__date_of_loss = datetime(1911, 1, 1)
-        self.__insurance_year_at_date_of_loss = (
-            self.__calculate_insurance_year_at_date_of_loss()
-        )
+        self.__insurance_year_at_date_of_loss = 0
 
         # 保險費相關變數
         self.__annualized_standard_unit_premium = 0
@@ -24,12 +24,8 @@ class ClaimBenefitParams:
         # 保單價值準備金相關變數
         self.__beginning_policy_value_reserve = 0
         self.__ending_policy_value_reserve = 0
-        self.__cumulative_days_for_policy_value_reserve = (
-            self.__calculate_cumulative_days_for_policy_value_reserve()
-        )
-        self.__period_days_for_policy_value_reserve = (
-            self.__calculate_period_days_for_policy_value_reserve()
-        )
+        self.__cumulative_days_for_policy_value_reserve = 0
+        self.__period_days_for_policy_value_reserve = 0
         self.__multiple_for_policy_value_reserve = 1
         self.__result_ratio_for_policy_value_reserve = 1
 
@@ -45,13 +41,59 @@ class ClaimBenefitParams:
         self.__discount_times = 0
 
     def __calculate_insurance_year_at_date_of_loss(self):
-        pass
+        date_params = DateParams()
+        date_params.set_start_date_for_difference(self.__coverage_start_date)
+        date_params.set_end_date_for_difference(self.__date_of_loss)
+        date_params.set_adjust_years_for_difference(1)
+
+        date_calculator_service_impl = DateCalculatorServiceImpl(date_params)
+        result = date_calculator_service_impl.calculate_years_difference()
+
+        return result
+
+    def __calculate_period_start_date_at_date_of_loss(self):
+        adjust_years = self.get_insurance_year_at_date_of_loss() - 1
+
+        date_params = DateParams()
+        date_params.set_date_for_computing(self.__coverage_start_date)
+        date_params.set_adjust_years_for_computing(adjust_years)
+
+        date_calculator_service_impl = DateCalculatorServiceImpl(date_params)
+        result = date_calculator_service_impl.adjust_years_to_date()
+
+        result = datetime.strptime(result, "%Y-%m-%d")
+
+        return result
 
     def __calculate_cumulative_days_for_policy_value_reserve(self):
-        pass
+        date_params = DateParams()
+        date_params.set_start_date_for_difference(self.__calculate_period_start_date_at_date_of_loss())
+        date_params.set_end_date_for_difference(self.__date_of_loss)
+        date_params.set_adjust_days_for_difference(0)
 
-    def __calculate_period_days_for_policy_value_reserve(self):
-        pass
+        date_calculator_service_impl = DateCalculatorServiceImpl(date_params)
+        result = date_calculator_service_impl.calculate_days_difference()
+
+        return result
+
+    def calculate_period_days_for_policy_value_reserve(self):
+        date_params = DateParams()
+        date_params.set_start_date_for_difference(self.__calculate_period_start_date_at_date_of_loss())
+
+        date_params.set_date_for_computing(date_params.get_start_date_for_difference())
+        date_params.set_adjust_years_for_computing(1)
+
+        date_calculator_service_impl = DateCalculatorServiceImpl(date_params)
+        period_end_date = date_calculator_service_impl.adjust_years_to_date()
+
+        period_end_date = datetime.strptime(period_end_date, "%Y-%m-%d")
+
+        date_params.set_end_date_for_difference(period_end_date)
+
+        date_calculator_service_impl = DateCalculatorServiceImpl(date_params)
+        result = date_calculator_service_impl.calculate_days_difference()
+
+        return result
 
     def get_coverage_start_date(self):
         return self.__coverage_start_date
@@ -90,6 +132,8 @@ class ClaimBenefitParams:
         self.__date_of_loss = date_of_loss
 
     def get_insurance_year_at_date_of_loss(self):
+        self.__insurance_year_at_date_of_loss = self.__calculate_insurance_year_at_date_of_loss()
+
         return self.__insurance_year_at_date_of_loss
 
     def get_annualized_standard_unit_premium(self):
@@ -108,7 +152,7 @@ class ClaimBenefitParams:
         return self.__result_ratio_for_return_of_premium
 
     def set_result_ratio_for_return_of_premium(
-        self, result_ratio_for_return_of_premium
+            self, result_ratio_for_return_of_premium
     ):
         self.__result_ratio_for_return_of_premium = result_ratio_for_return_of_premium
 
@@ -125,9 +169,13 @@ class ClaimBenefitParams:
         self.__ending_policy_value_reserve = ending_policy_value_reserve
 
     def get_cumulative_days_for_policy_value_reserve(self):
+        self.__cumulative_days_for_policy_value_reserve = self.__calculate_cumulative_days_for_policy_value_reserve()
+
         return self.__cumulative_days_for_policy_value_reserve
 
     def get_period_days_for_policy_value_reserve(self):
+        self.__period_days_for_policy_value_reserve = self.__calculate_period_days_for_policy_value_reserve()
+
         return self.__period_days_for_policy_value_reserve
 
     def get_multiple_for_policy_value_reserve(self):
@@ -140,7 +188,7 @@ class ClaimBenefitParams:
         return self.__result_ratio_for_policy_value_reserve
 
     def set_result_ratio_for_policy_value_reserve(
-        self, result_ratio_for_policy_value_reserve
+            self, result_ratio_for_policy_value_reserve
     ):
         self.__result_ratio_for_policy_value_reserve = (
             result_ratio_for_policy_value_reserve
