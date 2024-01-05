@@ -1,5 +1,5 @@
 import decimal
-from service.discount_calculator_service import DiscountCalculatorService
+from service.calculator.discount_calculator_service import DiscountCalculatorService
 
 
 class DiscountCalculatorServiceImpl(DiscountCalculatorService):

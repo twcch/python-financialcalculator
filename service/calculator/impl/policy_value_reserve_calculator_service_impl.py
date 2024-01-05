@@ -1,5 +1,5 @@
 import decimal
-from service.policy_value_reserve_calculator_service import (
+from service.calculator.policy_value_reserve_calculator_service import (
     PolicyValueReserveCalculatorService,
 )
 

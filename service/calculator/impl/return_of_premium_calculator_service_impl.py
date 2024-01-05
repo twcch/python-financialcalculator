@@ -1,6 +1,6 @@
 import decimal
 import math
-from service.return_of_premium_calculator_service import (
+from service.calculator.return_of_premium_calculator_service import (
     ReturnOfPremiumCalculatorService,
 )
 
