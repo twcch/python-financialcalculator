@@ -1,5 +1,5 @@
 from dto.claim_benefit_params import ClaimBenefitParams
-from service.discount_calculator_service_impl import DiscountCalculatorServiceImpl
+from service.impl.discount_calculator_service_impl import DiscountCalculatorServiceImpl
 
 
 def main():

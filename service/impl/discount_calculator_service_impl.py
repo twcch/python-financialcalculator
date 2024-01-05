@@ -1,7 +1,8 @@
 import decimal
+from service.discount_calculator_service import DiscountCalculatorService
 
 
-class DiscountCalculatorServiceImpl():
+class DiscountCalculatorServiceImpl(DiscountCalculatorService):
 
     def __init__(self, claim_benefit_params):
         self.__claim_benefit_params = claim_benefit_params
