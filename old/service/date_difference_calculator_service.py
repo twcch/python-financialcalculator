@@ -1,7 +1,8 @@
 from datetime import datetime
 
+
 class DateDifferenceCalculatorService:
-    
+
     def __init__(self, str_start_date, str_end_date):
         self.__start_date = datetime.strptime(str_start_date, '%Y-%m-%d')
         self.__end_date = datetime.strptime(str_end_date, '%Y-%m-%d')

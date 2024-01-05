@@ -1,15 +1,21 @@
-from dto.benefit_params import BenefitParams
-from service.discount_calculator_service import DiscountCalculatorService
+from dto.claim_benefit_params import ClaimBenefitParams
+from service.discount_calculator_service_impl import DiscountCalculatorServiceImpl
+
 
 def main():
-    benefit_params = BenefitParams()
-    benefit_params.set_payment_amount(10000)
-    benefit_params.set_annual_discount_rate(0.01)
-    benefit_params.set_discount_times(1)
-    
-    discount_calculator_service = DiscountCalculatorService(benefit_params)
-    result = discount_calculator_service.calculate_monthly_discount_rate()
+    discount_calculator()
+
+
+def discount_calculator():
+    claim_benefit_params = ClaimBenefitParams()
+    claim_benefit_params.set_payment_amount(40000)
+    claim_benefit_params.set_annual_interest_rate_for_discount(0.021)
+    claim_benefit_params.set_discount_times(7)
+
+    discount_calculator_service_impl = DiscountCalculatorServiceImpl(claim_benefit_params)
+    result = discount_calculator_service_impl.calculate_discount_amount()
     print(result)
+
 
 if __name__ == '__main__':
     main()
