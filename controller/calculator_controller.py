@@ -3,23 +3,23 @@ from service.calculator.impl.discount_calculator_service_impl import (
     DiscountCalculatorServiceImpl,
 )
 
-
-def main():
-    compute_discount()
+import logging
 
 
-def compute_discount():
-    claim_benefit_params = ClaimBenefitParams()
-    claim_benefit_params.set_payment_amount(40000)
-    claim_benefit_params.set_annual_interest_rate_for_discount(0.021)
-    claim_benefit_params.set_discount_times(7)
+class CalculatorController:
+    def __init__(self):
+        pass
 
-    discount_calculator_service_impl = DiscountCalculatorServiceImpl(
-        claim_benefit_params
-    )
-    result = discount_calculator_service_impl.calculate_discount_amount()
-    print(result)
+    def compute_discount(self):
+        claim_benefit_params = ClaimBenefitParams()
+        claim_benefit_params.set_payment_amount(40000)
+        claim_benefit_params.set_annual_interest_rate_for_discount(0.021)
+        claim_benefit_params.set_discount_times(7)
 
+        discount_calculator_service_impl = DiscountCalculatorServiceImpl(
+            claim_benefit_params
+        )
 
-if __name__ == "__main__":
-    main()
+        result = discount_calculator_service_impl.calculate_discount_amount()
+
+        return result
